@@ -1,15 +1,15 @@
 import tkinter
 import customtkinter
-
-
+from PIL import Image
 
 customtkinter.set_appearance_mode("system")
 customtkinter.set_default_color_theme("blue")
 
 app = customtkinter.CTk()
 app.attributes("-fullscreen", True)
-
-
+app.wm_attributes('-transparentcolor',app['bg'])
+Width = app.winfo_screenwidth()
+Height= app.winfo_screenheight()
 
 def button_function():
     print(usuario.get())
@@ -29,11 +29,13 @@ def button_function():
 
 
 
+logo = customtkinter.CTkImage(light_image=Image.open("image\Fondo.png"),size=(Width,Height))
 
+logolabel = customtkinter.CTkLabel(app, text="" , image=logo )
+logolabel.place(relx=0, y=0)
 
+inicio = customtkinter.CTkLabel(app,text="Iniciar sesión", font=("Helvetica",38), fg_color='transparent')
 
-
-inicio = customtkinter.CTkLabel(app,text="Iniciar seción", font=("Helvetica",38))
 inicio.place(relx=0.42, y=200)
 
 user = customtkinter.StringVar(app)
