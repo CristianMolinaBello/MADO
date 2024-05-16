@@ -1,5 +1,5 @@
 import tkinter
-import customtkinter
+import customtkinter , os
 from PIL import Image
 from PIL import ImageOps
 from PIL import ImageDraw
@@ -21,10 +21,13 @@ Height= app.winfo_screenheight()
 bar = customtkinter.CTkProgressBar(master=app,orientation="horizontal", mode="indeterminate",indeterminate_speed=5,
                                    height=15, width=400, corner_radius= 50, border_width=2)
 
-
+bienvenido = customtkinter.CTkLabel(app,text="Bienvenido Maicol", font=("Helvetica",80))
 ImageHuellaCarga = customtkinter.CTkImage(light_image=Image.open("image\\HuellaCarga.png"),size=(150,150))
 huellaCargalabel = customtkinter.CTkLabel(app, text="" , image=ImageHuellaCarga, height=50, width=50)
 botonIniciar = customtkinter.CTkButton(master = app, text="Iniciar")
+
+stringBuscador = ""
+buscador = customtkinter.CTkEntry(app,corner_radius=50,textvariable=stringBuscador )
 
 contador = 1 + 0
 
@@ -63,8 +66,10 @@ def Bienvenido():
     logolabel.place_forget()
     huellabutton.place_forget()
 
-    bienvenido = customtkinter.CTkLabel(app,text="Bienvenido Maicol", font=("Helvetica",80))
+    
     bienvenido.place(relx=0.28, rely=0.4)
+    f = threading.Timer(3, escritorio)
+    f.start()
 
 
 def inicioHuella():
@@ -133,5 +138,27 @@ contraseña.place(relx=0.5, y=550)
 button = customtkinter.CTkButton(master = app, text="Ingresar", command=validacion)
 button.place(relx=0.45, y=600)
 
+
+def escritorio():
+    bienvenido.place_forget()
+    
+    buscador.place(relx=0.5, y=550)
+    ImageHuella = customtkinter.CTkImage(light_image=Image.open("image\\Huella.png"),size=(50,50))
+    huellabutton = customtkinter.CTkButton(app, text="" , image=ImageHuella, height=30, width=30, command=buscar)
+    huellabutton.place(relx=0.9, y=700)
+
+def buscar():
+    os.startfile(programs[buscador.get()])
+
+
+programs = {
+    'google': r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+    'github': r"C:\Users\ASUS\AppData\Local\GitHubDesktop\GitHubDesktop.exe",
+    'notocar': r"steam://rungameid/2600140",
+    'word': r"C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE",
+    'powerpoint': r"C:\Program Files\Microsoft Office\root\Office16\POWERPNT.EXE",
+    'excel': r"C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE",
+    'chat': r"C:\Program Files\WindowsApps\5319275A.WhatsAppDesktop_2.2418.6.0_x64__cv1g1gvanyjgm\WhatsApp.exe"
+}
 
 app.mainloop()
