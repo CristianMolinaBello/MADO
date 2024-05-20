@@ -21,13 +21,13 @@ Height= app.winfo_screenheight()
 bar = customtkinter.CTkProgressBar(master=app,orientation="horizontal", mode="indeterminate",indeterminate_speed=5,
                                    height=15, width=400, corner_radius= 50, border_width=2)
 
-bienvenido = customtkinter.CTkLabel(app,text="Bienvenido Maicol", font=("Helvetica",80))
+bienvenido = customtkinter.CTkLabel(app,text="Bienvenido", font=("Helvetica",80))
 ImageHuellaCarga = customtkinter.CTkImage(light_image=Image.open("image\\HuellaCarga.png"),size=(150,150))
 huellaCargalabel = customtkinter.CTkLabel(app, text="" , image=ImageHuellaCarga, height=50, width=50)
 botonIniciar = customtkinter.CTkButton(master = app, text="Iniciar")
 
 stringBuscador = ""
-buscador = customtkinter.CTkEntry(app,corner_radius=50,textvariable=stringBuscador )
+buscador = customtkinter.CTkEntry(app,corner_radius=50,textvariable=stringBuscador, width=200 )
 
 contador = 1 + 0
 
@@ -67,7 +67,7 @@ def Bienvenido():
     huellabutton.place_forget()
 
     
-    bienvenido.place(relx=0.28, rely=0.4)
+    bienvenido.place(relx=0.38, rely=0.4)
     f = threading.Timer(3, escritorio)
     f.start()
 
@@ -110,8 +110,8 @@ def inicioProgreso():
 
 
 
-inicio = customtkinter.CTkLabel(app,text="Navarrete", font=("Helvetica",38), fg_color='transparent')
-inicio.place(relx=0.42, y=150)
+inicio = customtkinter.CTkLabel(app,text="Nicolas", font=("Helvetica",38), fg_color='transparent')
+inicio.place(relx=0.45, y=150)
 
 
 ImageUser = customtkinter.CTkImage(light_image=Image.open("image\\Navarrete.png"),size=(300,300))
@@ -141,11 +141,13 @@ button.place(relx=0.45, y=600)
 
 def escritorio():
     bienvenido.place_forget()
-    
-    buscador.place(relx=0.5, y=550)
-    ImageHuella = customtkinter.CTkImage(light_image=Image.open("image\\Huella.png"),size=(50,50))
-    huellabutton = customtkinter.CTkButton(app, text="" , image=ImageHuella, height=30, width=30, command=buscar)
-    huellabutton.place(relx=0.9, y=700)
+    ImageUser = customtkinter.CTkImage(light_image=Image.open("image\\Mado.png"),size=(300,300))
+    logolabel = customtkinter.CTkLabel(app, text="" , image=ImageUser, height=30, width=30)
+    logolabel.place(relx=0.38, y=150)
+    buscador.place(relx=0.4, y=500)
+    ImageHuella = customtkinter.CTkImage(light_image=Image.open("image\\lupa.png"),size=(50,50))
+    huellabutton = customtkinter.CTkButton(app, text="" , image=ImageHuella, height=30, width=30, command=buscar,fg_color='transparent' )
+    huellabutton.place(relx=0.55, y=480)
 
 def buscar():
     os.startfile(programs[buscador.get()])
@@ -158,7 +160,7 @@ programs = {
     'word': r"C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE",
     'powerpoint': r"C:\Program Files\Microsoft Office\root\Office16\POWERPNT.EXE",
     'excel': r"C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE",
-    'chat': r"C:\Program Files\WindowsApps\5319275A.WhatsAppDesktop_2.2418.6.0_x64__cv1g1gvanyjgm\WhatsApp.exe"
+    'chat': r"E:\Users\Datos 2022\Desktop\WhatsApp"
 }
 
 app.mainloop()
